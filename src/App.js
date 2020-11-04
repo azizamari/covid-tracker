@@ -18,7 +18,7 @@ function App() {
             name:country.country,
             value:country.countryInfo.iso2,
           }));
-
+          
           setCountries(countries);
       });
     };
@@ -48,6 +48,11 @@ function App() {
       </div>
       
       <div className="app__stats"> 
+        <InfoBox title="Corona Virus Cases"></InfoBox>
+        
+        <InfoBox title="Recovered"></InfoBox>
+
+        <InfoBox title="Deaths"></InfoBox>
         
       </div>
       {/* InfoBox */}
