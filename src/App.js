@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 import InfoBox from './InfoBox.js'
 
 function App() {
-  const [countries,setCountries]=useState(["USA","TN","FR","UK"]);
+  const [countries,setCountries]=useState([]);
   const [country,setCountry]=useState('worldwide');
   
   //https://disease.sh/v3/covid-19/countries
@@ -48,16 +48,13 @@ function App() {
       </div>
       
       <div className="app__stats"> 
-        <InfoBox title="Corona Virus Cases"></InfoBox>
+        <InfoBox title="Corona Virus Cases" cases={152} total={3000}></InfoBox>
         
-        <InfoBox title="Recovered"></InfoBox>
+        <InfoBox title="Recovered" cases={5552} total={2000}></InfoBox>
 
-        <InfoBox title="Deaths"></InfoBox>
+        <InfoBox title="Deaths" cases={1512} total={1540}></InfoBox>
         
       </div>
-      {/* InfoBox */}
-      {/* InfoBox */}
-      {/* InfoBox */}
 
       {/* Table */}
       {/* Graph */}
