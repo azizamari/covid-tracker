@@ -7,6 +7,16 @@ import Map from './Map.js';
 function App() {
   const [countries,setCountries]=useState([]);
   const [country,setCountry]=useState('worldwide');
+  const [countryInfo, setCountryInfo] = useState({});
+
+
+  useEffect(()=>{
+    fetch("https://disease.sh/v3/covid-19/all")
+      .then(response=>response.json())
+      .then(data=>{
+        setCountryInfo(data);
+    });
+  },[]);
   
   //https://disease.sh/v3/covid-19/countries
   useEffect(()=>{
@@ -27,10 +37,25 @@ function App() {
     getCountriesData();
   }, []);
 
-  const onCountryChange = (event)=>{
+  const onCountryChange = async (event)=>{
     const countryCode=event.target.value;
     setCountry(countryCode);
+
+    const url=countryCode==='worldwide'?'https://disease.sh/v3/covid-19/all': 
+    `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+
+    await fetch(url)
+    .then(response=>response.json())
+    .then(data=>{
+      setCountry(countryCode);
+      setCountryInfo(data);
+    });
+
+    // https://disease.sh/v3/covid-19/countries/all
+    // https://disease.sh/v3/covid-19/countries/{COUNTRY_CODE}
   };
+
+  console.log(countryInfo)
 
   return (
     <div className="app">
@@ -48,11 +73,11 @@ function App() {
         </div>
         
         <div className="app__stats"> 
-          <InfoBox title="Corona Virus Cases" cases={152} total={3000}></InfoBox>
+          <InfoBox title="Corona Virus Cases" cases={countryInfo.todayCases} total={countryInfo.cases}></InfoBox>
           
-          <InfoBox title="Recovered" cases={5552} total={2000}></InfoBox>
+          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered}></InfoBox>
 
-          <InfoBox title="Deaths" cases={1512} total={1540}></InfoBox>
+          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths}></InfoBox>
           
         </div>
         <Map />
@@ -61,7 +86,9 @@ function App() {
       <Card className="app__right">
         <CardContent>
           {/* Table */}
+          <h3>Live Cases by Country</h3>
           {/* Graph */}
+          <h3>Worldwide New Cases</h3>
         </CardContent>
       </Card>
 
