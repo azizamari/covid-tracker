@@ -27,12 +27,11 @@ function App() {
     const getCountriesData=async() =>{
       await fetch("https://disease.sh/v3/covid-19/countries")
       .then((response)=>response.json())
-      .then((data)=>{
-        const countries =data.map((country)=>(
-          {
-            name:country.country,
-            value:country.countryInfo.iso2,
-          }));
+      .then((data) => {
+        const countries = data.map((country) => ({
+          name: country.country,
+          value: country.countryInfo.iso2,
+        })).filter((country) => country.value !== null);
           
           const sortedData=SortData(data);
           setTableData(sortedData)
@@ -60,8 +59,6 @@ function App() {
     // https://disease.sh/v3/covid-19/countries/all
     // https://disease.sh/v3/covid-19/countries/{COUNTRY_CODE}
   };
-
-  console.log(countryInfo)
 
   return (
     <div className="app">
@@ -96,7 +93,7 @@ function App() {
           <Table countries={tableData}/>
           {/* Graph */}
           <h3>Worldwide Cases</h3>
-          <LineGraph />
+          <LineGraph casesType='cases'/>
         </CardContent>
       </Card>
 

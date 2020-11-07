@@ -1,20 +1,24 @@
-.table{
-    margin-top: 20px;
-    overflow: scroll;
-    height: 400px;
-    color: #6a5d5d;
-    background-color:white;
+.table {
+  margin-top: 20px;
+  overflow: scroll;
+  color: #6a5d5d;
+  background-color: white;
+  height: 400px;
 }
 
-.table tr{
-    display: flex;
-    justify-content: space-between;
+.table tr {
+  display: flex;
+  justify-content: space-between;
 }
 
-.table td{
-    padding: 0.5rem;
+.table td {
+  padding: 0.5rem;
 }
 
-.table tr:nth-of-type(odd){
-    background-color:#f3f2f8
+.table tr:nth-of-type(odd) {
+  background-color: #f3f2f8;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
 }
