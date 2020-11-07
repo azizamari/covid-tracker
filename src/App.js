@@ -6,12 +6,16 @@ import Map from './Map.js';
 import Table from './Table.js';
 import {SortData} from './util.js';
 import LineGraph from './LineGraph.js';
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries,setCountries]=useState([]);
   const [country,setCountry]=useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData,setTableData] = useState([]);
+  const [mapCenter,setMapCenter]=useState({
+    lat: 34.100321, lon: 9.632869});
+  const [mapZoom, setMapZoom]=useState(4);
 
 
   useEffect(()=>{
@@ -83,7 +87,9 @@ function App() {
           <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths}></InfoBox>
           
         </div>
-        <Map />
+        <Map center={[34.100321, 9.632869]} zoom={6} />
+
+
       </div>
 
       <Card className="app__right">
