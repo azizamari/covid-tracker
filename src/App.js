@@ -3,11 +3,15 @@ import { FormControl, MenuItem, Select, Card, CardContent} from '@material-ui/co
 import React, {useState, useEffect} from 'react';
 import InfoBox from './InfoBox.js'
 import Map from './Map.js';
+import Table from './Table.js';
+import {SortData} from './util.js';
+import LineGraph from './LineGraph.js';
 
 function App() {
   const [countries,setCountries]=useState([]);
   const [country,setCountry]=useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData,setTableData] = useState([]);
 
 
   useEffect(()=>{
@@ -30,6 +34,8 @@ function App() {
             value:country.countryInfo.iso2,
           }));
           
+          const sortedData=SortData(data);
+          setTableData(sortedData)
           setCountries(countries);
       });
     };
@@ -87,8 +93,10 @@ function App() {
         <CardContent>
           {/* Table */}
           <h3>Live Cases by Country</h3>
+          <Table countries={tableData}/>
           {/* Graph */}
-          <h3>Worldwide New Cases</h3>
+          <h3>Worldwide Cases</h3>
+          <LineGraph />
         </CardContent>
       </Card>
 
