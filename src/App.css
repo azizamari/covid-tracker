@@ -20,7 +20,7 @@ body{
 }
 
 .app__left{
-  flex: 0.65;
+  flex: 0.70;
   border: none;
 }
 .app__right{
