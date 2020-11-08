@@ -13,12 +13,9 @@
 
 .table td {
   padding: 0.5rem;
+  border: none;
 }
 
 .table tr:nth-of-type(odd) {
   background-color: #f3f2f8;
-}
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent; /* make scrollbar transparent */
 }
