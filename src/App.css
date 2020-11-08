@@ -25,7 +25,7 @@ body {
 }
 
 .app__header > h1 {
-  color: #fc3c3c;
+  color: red;
   font-size: 2rem;
 }
 

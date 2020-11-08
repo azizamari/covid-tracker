@@ -18,6 +18,10 @@
   color: lightgreen !important;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .infoBox__cases {
   color: #cc1034;
   font-weight: 600;
